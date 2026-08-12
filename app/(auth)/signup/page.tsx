@@ -1,6 +1,4 @@
-import React from "react";
 import RegisterForm from "../_components/RegisterForm";
-import { Button } from "@base-ui/react";
 import Link from "next/link";
 
 const SignupPage = () => {
