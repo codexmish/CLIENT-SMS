@@ -6,11 +6,9 @@ import { signinAction } from "../_actions/signinActions";
 import { useActionState, useEffect } from "react";
 import { toast } from "@/components/ui/toast";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [state, action, pending] = useActionState(signinAction, false);
-  const router = useRouter();
 
   useEffect(() => {
     console.log(state);
@@ -25,8 +23,6 @@ const LoginForm = () => {
     }
 
     if (state.success) {
-      router.push("/");
-
       toast.add({
         type: "success",
         description: state.message,
@@ -43,14 +39,14 @@ const LoginForm = () => {
             name="email"
             type="email"
             labelName="Email"
-            errMsg={state.error?.email}
+            errMsg={state?.error?.email}
           />
           {/* ----passWord */}
           <Input
             name="password"
             type="password"
             labelName="PassWord"
-            errMsg={state.error?.password}
+            errMsg={state?.error?.password}
           />
 
           <Button type="submit">{pending ? "loading..." : "SignIn"}</Button>

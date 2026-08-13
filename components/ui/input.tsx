@@ -23,7 +23,7 @@ function Input({ className, type, labelName, errMsg, ...props }: InputProps) {
           )}
           {...props}
         />
-        <FieldDescription className="text-red-600">{errMsg}</FieldDescription>
+        <FieldDescription className="text-red-600">{errMsg? errMsg : ""}</FieldDescription>
       </Field>
     </div>
   );
