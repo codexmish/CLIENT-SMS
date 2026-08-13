@@ -23,7 +23,7 @@ const SignIn = () => {
 
             <Link
               className="text-lg cursor-pointer text-white bg-black h-10 px-4 rounded-2xl flex items-center justify-center"
-              href={"/signup"}
+              href={"/forgetpassword"}
             >
               Forget password
             </Link>
