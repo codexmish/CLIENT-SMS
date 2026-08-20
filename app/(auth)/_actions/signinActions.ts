@@ -38,21 +38,20 @@ export const signinAction = async (prevState: Boolean, formData: FormData) => {
       maxAge: 60 * 60 * 24 * 7,
       sameSite: "lax",
     });
-  }
+    // -----decoding jwt token
+    const decodedData = jwt.decode(result.data.accessToken) as JwtPayload;
 
-  // -----decoding jwt token
-  const decodedData = jwt.decode(result.data.accessToken) as JwtPayload;
+    if (decodedData.role === "ADMIN") {
+      redirect("/adminDashboard");
+    }
 
-  if (decodedData.role === "ADMIN") {
-    redirect("/adminDashboard");
-  }
+    if (decodedData.role === "TEACHER") {
+      redirect("/teacherDashboard");
+    }
 
-  if (decodedData.role === "TEACHER") {
-    redirect("/teacherDashboard");
-  }
-
-  if (decodedData.role === "STUDENT") {
-    redirect("/studentDashboard");
+    if (decodedData.role === "STUDENT") {
+      redirect("/studentDashboard");
+    }
   }
 
   return result;
