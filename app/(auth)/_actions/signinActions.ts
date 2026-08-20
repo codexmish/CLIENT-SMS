@@ -13,6 +13,8 @@ export const signinAction = async (prevState: Boolean, formData: FormData) => {
     password,
   };
 
+  console.log("bodypayload", bodyPayload);
+
   const res = await fetch(`${process.env.BACKEND_API_URL}/auth/signin`, {
     method: "post",
     headers: {
@@ -22,6 +24,10 @@ export const signinAction = async (prevState: Boolean, formData: FormData) => {
   });
 
   const result = await res.json();
+
+  if (!result.success){
+    return result
+  }
 
   // ------setting token on cookies
   if (result.success) {
